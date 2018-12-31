@@ -9,4 +9,7 @@ urlpatterns = [
 	path('post/<int:pk>	/edit/', views.post_edit, name='post_edit'),
 	url(r'^comment/(?P<pk>\d+)/approve/$', views.comment_approve, name='comment_approve'),
 	url(r'^comment/(?P<pk>\d+)/remove/$', views.comment_remove, name='comment_remove'),
+	url(r'^signup/$', views.signup, name='signup'),
+	path('activate/<slug:uidb64>/<slug:token>', views.activate, name='activate'),
+	url(r'^likepost/$', views.like_post, name='likepost'),
 ]
