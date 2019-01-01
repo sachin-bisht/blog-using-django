@@ -1,7 +1,7 @@
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, get_object_or_404, redirect
 from django.utils import timezone
-from .models import Post, Comment
+from .models import Post, Comment, Like
 from .forms import PostForm, CommentForm, SignupForm
 
 from django.http import HttpResponse
@@ -123,6 +123,6 @@ def like_post(request):
 		likedpost = Post.objects.get(pk=post_id)
 		m = Like(post=likedpost)
 		m.save()
-		return HttpResponse('Success!')
+		return HttpResponse("Success!")
 	else:
-		return HttpResponse('Request method is not get')
+		return HttpResponse("Request method is not get")

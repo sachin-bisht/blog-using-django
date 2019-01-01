@@ -4,28 +4,29 @@
 {% for post in posts %}
     <div class="post">
         <h1><a href="{% url 'post_detail' pk=post.pk %}">{{ post.title }}</a></h1>
-        <a class='likebutton' id="like{{post.id}}" href="#" data-catid="{{post.id}}">Like: {{post.likes.count}}</a>
+        <a  class="likebutton" id="like{{post.id}}" href="#" data-catid="{{post.pk}}">Like: {{ post.likes.count }}</a>
         <a href="{% url 'post_detail' pk=post.pk %}">Comments: {{ post.approved_comments.count }}</a>
     </div>
 {% endfor %}
-<!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script> 
-<script type="text/javascript">
-$('/likebutton').click(function(){
-  var catid;
-  catid = $(this).attr("data-catid");
-  $.ajax(
-  {
-    type:"GET",
-    url: "/likepost",
-    data:{
-      post_id:catid
-    },
-    success: function(data)
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+    <script type="text/javascript">
+    $('.likebutton').click(function(){
+    var catid;
+    catid = $(this).attr("data-catid");
+    $.ajax(
     {
-      $("#like"+catid).remove();
-      $("#message").text(data);
-    },
-  })
-}); 
-</script> -->
+        type:"GET",
+        url: "{% url 'likepost' %}",
+        data:{
+                 post_id: catid,
+        },
+        success: function(data)
+        {
+            $( '#likebutton'+ catid ).remove();
+            $( '#message' ).text(data);
+        }
+     })
+});
+</script>
+
 {% endblock %}

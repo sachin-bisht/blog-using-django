@@ -38,5 +38,4 @@ class Comment(models.Model):
 		return self.text
 
 class Like(models.Model):
-	post = models.ForeignKey(Post, on_delete=models.CASCADE, related_name='likes')
-	
+	post = models.ForeignKey('blog.Post', on_delete=models.CASCADE, related_name='likes')
